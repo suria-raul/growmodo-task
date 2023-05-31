@@ -18,9 +18,7 @@ use App\Http\Controllers\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [IndexController::class, 'index'])->name('index.home');
-Route::get('/hello', [IndexController::class, 'show'])->name('index.show');
+Route::redirect('/', 'login');
 
 Route::get('/login', [LoginController::class, 'show'])->name('login.show');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
@@ -31,4 +29,4 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::resource('/user', UserController::class)->except(['create', 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
