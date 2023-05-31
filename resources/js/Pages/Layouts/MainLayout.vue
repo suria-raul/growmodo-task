@@ -9,6 +9,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul v-if="user" class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <Link class="nav-link text-capitalize" :href="route('user.index')">View Records</Link>
+                    </li>
+                    <li class="nav-item">
                         <Link class="nav-link text-capitalize" :href="route('logout')" method="post" as="button">Logout</Link>
                     </li>
                 </ul>
