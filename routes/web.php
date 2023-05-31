@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\RegisterController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -27,6 +26,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 
-Route::resource('/user', UserController::class)->except(['create', 'store']);
+Route::resource('/user', UserController::class)->except(['create', 'store'])->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');

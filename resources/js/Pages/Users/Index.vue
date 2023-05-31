@@ -1,15 +1,37 @@
 <template>
     <main-layout>
-        <div>User Index</div>
+        <h1>Users</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="user in users" :key="user.id">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+            </tr>
+            </tbody>
+        </table>
     </main-layout>
 </template>
 
-<script>
+<script setup>
 import MainLayout from "../Layouts/MainLayout.vue"
+import {onMounted, ref} from "vue";
+import axios from "axios"
 
-export default {
-    components: {
-        MainLayout
-    }
+const users = ref([]);
+
+const getUsers = () => {
+    axios.get('/api/users')
+        .then(response => users.value = response.data.data)
+        .catch(error => console.log(error))
 }
+
+onMounted(() => getUsers())
 </script>
