@@ -19,6 +19,9 @@
                     <a :href="route('user.show', user)">
                         view
                     </a>
+                    <a :href="route('user.edit', user)">
+                        edit
+                    </a>
                     <button @click="deleteUser(user.id)">
                         Delete
                     </button>

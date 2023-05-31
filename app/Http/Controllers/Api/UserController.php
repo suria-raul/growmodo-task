@@ -15,10 +15,10 @@ class UserController extends Controller
         return new UserCollection(User::all());
     }
 
-    public function show(User $user)
-    {
-        return new UserResource($user);
-    }
+//    public function show(User $user)
+//    {
+//        return new UserResource($user);
+//    }
 
     public function destroy(User $user)
     {
