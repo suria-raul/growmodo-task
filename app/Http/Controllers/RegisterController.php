@@ -17,6 +17,6 @@ class RegisterController extends Controller
     {
         User::create($storeUserRequest->validated());
 
-        return redirect()->route('login.form');
+        return redirect()->route('login');
     }
 }
