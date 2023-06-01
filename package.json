@@ -19,5 +19,14 @@
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "@babel/core": "^7.17.2",
+        "@vue/compiler-sfc": "^3.2.31",
+        "babel-loader": "^8.2.3",
+        "sweetalert2": "^11.4.0",
+        "vue": "^3.2.29",
+        "vue-loader": "^17.0.0",
+        "vue-router": "^4.0.12"
     }
 }
