@@ -66,15 +66,20 @@ const deleteUser = (id) => {
         title: 'Are you sure?',
         text: 'This action cannot be undone',
         icon: 'warning',
-        showCancelButtonZ: true,
+        showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
+        cancelButtonText: 'Cancel',
         confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.value) {
             axios.delete(`/api/user/${id}`)
                 .then((res) => {
                     getUsers()
+
+                    toast.fire({
+                        icon: "success",
+                        title: res.data.message
+                    })
                 })
                 .catch((error) => {
                     console.log(error)

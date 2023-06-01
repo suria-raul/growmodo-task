@@ -17338,14 +17338,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         title: 'Are you sure?',
         text: 'This action cannot be undone',
         icon: 'warning',
-        showCancelButtonZ: true,
+        showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
+        cancelButtonText: 'Cancel',
         confirmButtonText: 'Yes'
       }).then(function (result) {
         if (result.value) {
           axios["delete"]("/api/user/".concat(id)).then(function (res) {
             getUsers();
+            toast.fire({
+              icon: "success",
+              title: res.data.message
+            });
           })["catch"](function (error) {
             console.log(error);
           });

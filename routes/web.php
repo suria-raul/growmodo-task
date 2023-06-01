@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{pathMatch}', function () {
     return view('app');
 })->where('pathMatch', ".*");
+
+//Route::get('/user', function () {
+//    return view('app');
+//});
+//
+//Route::get('/user/{user}', function () {
+//    return view('app');
+//});
