@@ -20,7 +20,7 @@
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
             <td>
-                <span>view</span>
+                <button @click="viewUser(user.id)">view</button>
                 <button @click="editUser(user.id)">edit</button>
                 <button @click="deleteUser(user.id)">delete</button>
             </td>
@@ -55,6 +55,10 @@ const createUser = () => {
 
 const editUser = (id) => {
     router.push(`/user/${id}/edit`)
+}
+
+const viewUser = (id) => {
+    router.push(`/user/${id}`)
 }
 
 const deleteUser = (id) => {
