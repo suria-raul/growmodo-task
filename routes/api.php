@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/user', \App\Http\Controllers\Api\UserController::class)->except('create');
+//Route::post('/login', [\App\Http\Controllers\Api\LoginController::class, 'login']);
 
+Route::resource('/user', \App\Http\Controllers\Api\UserController::class)->except('create');
 // put is not working in axios
 // always returns 422
 // this is the update route

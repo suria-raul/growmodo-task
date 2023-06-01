@@ -53,7 +53,7 @@ const updateUser = (id) => {
     formData.append('email', form.value.email)
     formData.append('phone', form.value.phone)
 
-    // I do not why put is not working here
+    // I do not know why put is not working here
     // cannot find the answer in the internet
     axios.post(`/api/user/${id}`, formData)
         .then((response) => {
