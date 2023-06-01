@@ -1,4 +1,8 @@
 <template>
-    <h3>test</h3>
+    <Header/>
     <router-view/>
 </template>
+
+<script setup>
+import Header from "./layout/header.vue";
+</script>

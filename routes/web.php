@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('app');
 //})->where('pathMatch', ".*");
 
-Route::get('/', [\App\Http\Controllers\Backend\LoginController::class, 'showForm']);
+Route::get('/', [\App\Http\Controllers\Backend\LoginController::class, 'showForm'])->name('login');
 Route::post('/login', [\App\Http\Controllers\Backend\LoginController::class, 'login']);
+Route::post('/logout', [\App\Http\Controllers\Backend\LoginController::class, 'logout']);
 
-Route::resource('/user', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update');
+Route::resource('/user', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware('auth');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -17,7 +18,8 @@ class LoginController extends Controller
 
             return response()->json([
                 'message' => 'User Authenticated!',
-                'logged_in' => true
+                'logged_in' => true,
+                'user' => Auth::user()
             ], 200);
         }
 
@@ -29,5 +31,19 @@ class LoginController extends Controller
     public function showForm()
     {
         return view('app');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return response()->json([
+            'message' => 'Logged out Successfully',
+            'logged_out' => true
+        ], 200);
     }
 }
