@@ -5,7 +5,7 @@
             Create User
         </button>
     </div>
-    <div v-if="users.length > 0" class="container">
+    <div v-if="users.length > 0" class="container table-responsive">
         <table class="table">
             <thead>
             <tr>
