@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
-Route::get('/user/{user}', [\App\Http\Controllers\Api\UserController::class, 'show']);
-Route::put('/user/{user}', [\App\Http\Controllers\Api\UserController::class, 'update'])->name('api.user.update');
-Route::delete('/user/{user}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
