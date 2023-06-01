@@ -1,5 +1,10 @@
 <template>
-    <h1>Users</h1>
+    <div class="d-flex justify-content-between">
+        <h1>Users</h1>
+        <button @click="createUser">
+            Create User
+        </button>
+    </div>
     <table class="table" v-if="users.length > 0">
         <thead>
         <tr>
@@ -29,16 +34,23 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
+import {useRouter} from "vue-router"
 
 onMounted(async () => {
     getUsers()
 })
+
+const router = useRouter()
 
 let users = ref([])
 
 const getUsers = async () => {
     let response = await axios.get("/api/user")
     users.value = response.data.users
+}
+
+const createUser = () => {
+    router.push('/user/create')
 }
 
 </script>
