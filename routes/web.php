@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/{pathMatch}', function () {
-//    return view('app');
-//})->where('pathMatch', ".*");
-
 Route::get('/', [\App\Http\Controllers\Backend\LoginController::class, 'showForm'])->name('login');
 Route::post('/login', [\App\Http\Controllers\Backend\LoginController::class, 'login']);
 Route::post('/logout', [\App\Http\Controllers\Backend\LoginController::class, 'logout']);

@@ -6,7 +6,6 @@ import editUser from "../components/users/edit.vue";
 import loginForm from "../components/forms/login.vue";
 import registerForm from "../components/forms/register.vue";
 import dashboard from "../components/dashboard/dashboard.vue";
-import notFound from "../components/notfound.vue";
 
 const routes = [
     {
@@ -38,10 +37,6 @@ const routes = [
         path: '/user/:id/edit',
         component: editUser,
         props: true
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        component: notFound
     }
 ]
 
