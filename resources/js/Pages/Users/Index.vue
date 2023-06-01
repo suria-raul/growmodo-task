@@ -46,11 +46,11 @@ const getUsers = () => {
 }
 
 const deleteUser = (userId) => {
-    axios.delete('/api/user/' + userId)
+    axios.delete(`/api/user/${userId}`)
         .then(res => {
             if (res.data.isDeleted) {
                 alert(res.data.message)
-                window.location.reload()
+                getUsers()
             }
         })
 }
