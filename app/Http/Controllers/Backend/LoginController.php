@@ -19,6 +19,7 @@ class LoginController extends Controller
             return response()->json([
                 'message' => 'User Authenticated!',
                 'logged_in' => true,
+                'user' => Auth::user(),
             ], 200);
         }
 

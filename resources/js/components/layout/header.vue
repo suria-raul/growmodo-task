@@ -7,23 +7,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-<!--                <ul class="navbar-nav mb-2 mb-lg-0">-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link text-capitalize" href="#">View Records</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <button class="nav-link text-capitalize" @click="logout">Logout</button>-->
-<!--                    </li>-->
-<!--                </ul>-->
+                <ul v-if="user" class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-capitalize" href="#">View Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link text-capitalize" @click="logout">Logout</button>
+                    </li>
+                </ul>
                 <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link text-capitalize" href="/">login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-capitalize" href="/register">register</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link text-capitalize" @click="logout">Logout</button>
                     </li>
                 </ul>
             </div>
@@ -32,14 +29,29 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 
+onMounted(() => {
+    getCurrentUser()
+})
+
 const router = useRouter()
+
+const user = ref({})
+
+const getCurrentUser = () => {
+    if (window.auth_user) {
+        user.value = window.auth_user
+    } else {
+        user.value = null
+    }
+}
 
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
+            getCurrentUser()
             router.push('/')
 
             toast.fire({

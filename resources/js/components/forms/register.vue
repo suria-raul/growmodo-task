@@ -54,6 +54,8 @@ const register = () => {
             form.value.password = ''
             form.value.password_confirmation = ''
 
+            window.auth_user = response.data.user
+
             router.push('/dashboard')
 
             toast.fire({
