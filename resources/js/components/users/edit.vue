@@ -54,9 +54,8 @@ const updateUser = (id) => {
     formData.append('username', form.value.username)
     formData.append('email', form.value.email)
     formData.append('phone', form.value.phone)
+    formData.append('_method', 'PUT')
 
-    // I do not know why put is not working here
-    // cannot find the answer in the internet
     axios.post(`/api/user/${id}`, formData)
         .then((response) => {
             form.value.username = ''
