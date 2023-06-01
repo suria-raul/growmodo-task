@@ -17197,8 +17197,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 2:
               response = _context2.sent;
               form.value = response.data;
-              console.log(response.data);
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }
@@ -17222,7 +17221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         form.value.phone = '';
         form.value.password = '';
         form.value.password_confirmation = '';
-        router.push("/user/".concat(id, "/edit"));
+        router.push('/user');
         getUser();
         toast.fire({
           icon: "success",
@@ -17331,6 +17330,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var editUser = function editUser(id) {
       router.push("/user/".concat(id, "/edit"));
     };
+    var deleteUser = function deleteUser(id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action cannot be undone',
+        icon: 'warning',
+        showCancelButtonZ: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]("/api/user/".concat(id)).then(function (res) {
+            getUsers();
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    };
     var __returned__ = {
       router: router,
       get users() {
@@ -17342,6 +17360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       getUsers: getUsers,
       createUser: createUser,
       editUser: editUser,
+      deleteUser: deleteUser,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       get useRouter() {
@@ -17611,7 +17630,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "Actions")])], -1 /* HOISTED */);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "view", -1 /* HOISTED */);
 var _hoisted_5 = ["onClick"];
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "delete", -1 /* HOISTED */);
+var _hoisted_6 = ["onClick"];
 var _hoisted_7 = {
   key: 1
 };
@@ -17625,7 +17644,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $setup.editUser(user.id);
       }
-    }, "edit", 8 /* PROPS */, _hoisted_5), _hoisted_6])]);
+    }, "edit", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $setup.deleteUser(user.id);
+      }
+    }, "delete", 8 /* PROPS */, _hoisted_6)])]);
   }), 256 /* UNKEYED_FRAGMENT */))])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, " No users found "))], 64 /* STABLE_FRAGMENT */);
 }
 

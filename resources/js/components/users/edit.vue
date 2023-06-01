@@ -45,7 +45,6 @@ let errors = ref([])
 const getUser = async () => {
     let response = await axios.get(`/api/user/${props.id}/edit`)
     form.value = response.data
-    console.log(response.data)
 }
 
 const updateUser = (id) => {
@@ -64,7 +63,7 @@ const updateUser = (id) => {
             form.value.password = ''
             form.value.password_confirmation = ''
 
-            router.push(`/user/${id}/edit`)
+            router.push('/user')
             getUser()
 
             toast.fire({

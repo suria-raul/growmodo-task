@@ -22,7 +22,7 @@
             <td>
                 <span>view</span>
                 <button @click="editUser(user.id)">edit</button>
-                <span>delete</span>
+                <button @click="deleteUser(user.id)">delete</button>
             </td>
         </tr>
         </tbody>
@@ -57,4 +57,25 @@ const editUser = (id) => {
     router.push(`/user/${id}/edit`)
 }
 
+const deleteUser = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action cannot be undone',
+        icon: 'warning',
+        showCancelButtonZ: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if (result.value) {
+            axios.delete(`/api/user/${id}`)
+                .then((res) => {
+                    getUsers()
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+    })
+}
 </script>
