@@ -35,8 +35,7 @@ const login = () => {
             form.value.password = ''
 
             if (response.data.logged_in) {
-                window.auth_user = response.data.user
-                router.push('/user')
+                router.push('/dashboard')
 
                 toast.fire({
                     icon: "success",

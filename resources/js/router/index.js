@@ -5,6 +5,7 @@ import showUser from "../components/users/show.vue";
 import editUser from "../components/users/edit.vue";
 import loginForm from "../components/forms/login.vue";
 import registerForm from "../components/forms/register.vue";
+import dashboard from "../components/dashboard/dashboard.vue";
 import notFound from "../components/notfound.vue";
 
 const routes = [
@@ -15,6 +16,10 @@ const routes = [
     {
         path: '/register',
         component: registerForm
+    },
+    {
+        path: '/dashboard',
+        component: dashboard
     },
     {
         path: '/user',

@@ -24,4 +24,6 @@ Route::post('/logout', [\App\Http\Controllers\Backend\LoginController::class, 'l
 Route::get('/register', [\App\Http\Controllers\Backend\RegisterController::class, 'showForm']);
 Route::post('/register', [\App\Http\Controllers\Backend\RegisterController::class, 'register']);
 
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware('auth');
+
 Route::resource('/user', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware('auth');

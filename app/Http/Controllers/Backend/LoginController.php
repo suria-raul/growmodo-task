@@ -19,15 +19,15 @@ class LoginController extends Controller
             return response()->json([
                 'message' => 'User Authenticated!',
                 'logged_in' => true,
-                'user' => Auth::user()
             ], 200);
         }
 
         return response()->json([
             'message' => 'Failed to Authenticate',
-            'logged_in' => false
+            'logged_in' => false,
         ]);
     }
+
     public function showForm()
     {
         return view('app');
