@@ -4,12 +4,17 @@ import createUser from "../components/users/create.vue";
 import showUser from "../components/users/show.vue";
 import editUser from "../components/users/edit.vue";
 import loginForm from "../components/forms/login.vue";
+import registerForm from "../components/forms/register.vue";
 import notFound from "../components/notfound.vue";
 
 const routes = [
     {
         path: '/',
         component: loginForm
+    },
+    {
+        path: '/register',
+        component: registerForm
     },
     {
         path: '/user',
