@@ -34,7 +34,7 @@ let user = ref({
 })
 
 const getUser = async () => {
-    let response = await axios.get(`/api/user/${props.id}/edit`)
+    let response = await axios.get(`/api/user/${props.id}`)
     user.value = response.data
 }
 
