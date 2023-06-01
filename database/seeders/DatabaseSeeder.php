@@ -20,13 +20,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $adminRole = Role::where('name', 'administrator')->get();
-
         $administrator = User::factory()->create([
             'username' => 'administrator',
             'email' => 'admin@mailinator.com',
             'password' => 'p^Nd@S',
         ]);
-
         $administrator->assignRole($adminRole);
     }
 }
