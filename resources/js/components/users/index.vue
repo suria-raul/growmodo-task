@@ -16,12 +16,12 @@
         </thead>
         <tbody>
         <tr v-for="user in users">
-            <td>{{user.username}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.phone}}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
             <td>
                 <span>view</span>
-                <span>edit</span>
+                <button @click="editUser(user.id)">edit</button>
                 <span>delete</span>
             </td>
         </tr>
@@ -51,6 +51,10 @@ const getUsers = async () => {
 
 const createUser = () => {
     router.push('/user/create')
+}
+
+const editUser = (id) => {
+    router.push(`/user/${id}/edit`)
 }
 
 </script>
