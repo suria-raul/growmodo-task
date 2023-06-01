@@ -26,4 +26,4 @@ Route::post('/register', [\App\Http\Controllers\Backend\RegisterController::clas
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware('auth');
 
-Route::resource('/user', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware('auth');
+Route::resource('/user', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware(['auth', 'role:administrator']);
