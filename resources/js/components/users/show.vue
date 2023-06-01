@@ -1,15 +1,17 @@
 <template>
-    <div>
-        <h5>Username:</h5>
-        <p>{{ user.username }}</p>
-    </div>
-    <div>
-        <h5>Email:</h5>
-        <p>{{ user.email }}</p>
-    </div>
-    <div>
-        <h5>Phone:</h5>
-        <p>{{ user.phone }}</p>
+    <div class="container text-white mt-5">
+        <div>
+            <h5>Username:</h5>
+            <p>{{ user.username }}</p>
+        </div>
+        <div>
+            <h5>Email:</h5>
+            <p>{{ user.email }}</p>
+        </div>
+        <div>
+            <h5>Phone:</h5>
+            <p>{{ user.phone }}</p>
+        </div>
     </div>
 </template>
 

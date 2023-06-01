@@ -1,19 +1,21 @@
 <template>
-    <form @submit.prevent="updateUser(form.id)">
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input v-model="form.username" type="text" class="form-control" name="username" id="username" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input v-model="form.email" type="email" class="form-control" name="email" id="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Phone number</label>
-            <input v-model="form.phone" type="tel" class="form-control" name="phone" id="phone" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container mt-5">
+        <form @submit.prevent="updateUser(form.id)" class="p-5 mx-auto rounded bg-white">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input v-model="form.username" type="text" class="form-control" name="username" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input v-model="form.email" type="email" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone number</label>
+                <input v-model="form.phone" type="tel" class="form-control" name="phone" id="phone" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">Submit</button>
+        </form>
+    </div>
 </template>
 
 <script setup>

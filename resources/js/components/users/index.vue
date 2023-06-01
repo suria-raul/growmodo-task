@@ -1,33 +1,35 @@
 <template>
-    <div class="d-flex justify-content-between">
-        <h1>Users</h1>
-        <button @click="createUser">
+    <div class="container mt-5 mb-3 d-flex justify-content-between align-items-center">
+        <h1 class="text-white">Users</h1>
+        <button @click="createUser" class="btn btn-primary">
             Create User
         </button>
     </div>
-    <table class="table" v-if="users.length > 0">
-        <thead>
-        <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="user in users">
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phone }}</td>
-            <td>
-                <button @click="viewUser(user.id)">view</button>
-                <button @click="editUser(user.id)">edit</button>
-                <button @click="deleteUser(user.id)">delete</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div v-else>
+    <div v-if="users.length > 0" class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="user in users">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <button class="m-1 text-capitalize btn btn-success" @click="viewUser(user.id)">view</button>
+                    <button class="m-1 text-capitalize btn btn-primary" @click="editUser(user.id)">edit</button>
+                    <button class="m-1 text-capitalize btn btn-danger" @click="deleteUser(user.id)">delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div v-else class="container">
         No users found
     </div>
 </template>

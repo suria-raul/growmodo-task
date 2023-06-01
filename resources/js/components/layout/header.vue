@@ -9,7 +9,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul v-if="user" class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-center" href="#">View Records</a>
+                        <a class="nav-link text-capitalize text-center" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-capitalize text-center" href="/user">View Records</a>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
