@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container d-flex justify-content-end">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navigation" aria-controls="navigation"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -9,18 +9,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul v-if="user" class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize" href="#">View Records</a>
+                        <a class="nav-link text-capitalize text-center" href="#">View Records</a>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link text-capitalize" @click="logout">Logout</button>
+                        <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
                     </li>
                 </ul>
                 <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize" href="/">login</a>
+                        <a class="nav-link text-capitalize text-center" href="/">login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize" href="/register">register</a>
+                        <a class="nav-link text-capitalize text-center" href="/register">register</a>
                     </li>
                 </ul>
             </div>

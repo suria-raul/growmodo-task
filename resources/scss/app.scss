@@ -1,0 +1,35 @@
+body {
+    background-image: linear-gradient(to top right, #61d9de, #e739f5);
+    height: 100vh;
+}
+
+form {
+    max-width: 450px;
+
+    .form-control {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        background-color: white;
+        outline: none;
+
+        &:focus {
+            border-color: unset;
+            outline: none;
+            box-shadow: unset;
+        }
+    }
+
+    .btn {
+        background-image: linear-gradient(to right, #61d9de, #e739f5);
+        border-color: white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-image: linear-gradient(to right, #61d9de, #e739f5);
+            border-color: white;
+        }
+    }
+}
