@@ -1,6 +1,6 @@
 <template>
     <h1>Users</h1>
-    <table class="table">
+    <table class="table" v-if="users.length > 0">
         <thead>
         <tr>
             <th scope="col">Username</th>
@@ -10,10 +10,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+        <tr v-for="user in users">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
             <td>
                 <span>view</span>
                 <span>edit</span>
@@ -22,6 +22,9 @@
         </tr>
         </tbody>
     </table>
+    <div v-else>
+        No users found
+    </div>
 </template>
 
 <script setup>
@@ -31,9 +34,11 @@ onMounted(async () => {
     getUsers()
 })
 
+let users = ref([])
+
 const getUsers = async () => {
     let response = await axios.get("/api/user")
-    console.log('users', response)
+    users.value = response.data.users
 }
 
 </script>
