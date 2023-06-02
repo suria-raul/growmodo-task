@@ -10,31 +10,38 @@ import dashboard from "../components/dashboard/dashboard.vue";
 const routes = [
     {
         path: '/',
-        component: loginForm
+        name: 'login',
+        component: loginForm,
     },
     {
         path: '/register',
+        name: 'register',
         component: registerForm
     },
     {
         path: '/dashboard',
+        name: 'dashboard',
         component: dashboard
     },
     {
         path: '/users',
+        name: 'users',
         component: users
     },
     {
         path: '/users/create',
+        name: 'users_create',
         component: createUser
     },
     {
         path: '/users/:id',
+        name: 'users_show',
         component: showUser,
         props: true
     },
     {
         path: '/users/:id/edit',
+        name: 'users_edit',
         component: editUser,
         props: true
     }
@@ -43,4 +50,17 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL), routes
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.fullPath == '/dashboard' && localStorage.API_TOKEN == undefined) {
+        next({name: 'login'})
+    } else if (to.fullPath == '/users' && localStorage.API_TOKEN == undefined) {
+        next({name: 'login'})
+    } else if (to.fullPath == '/users/create' && localStorage.API_TOKEN == undefined) {
+        next({name: 'login'})
+    } else {
+        next()
+    }
+})
+
 export default router
