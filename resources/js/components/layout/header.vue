@@ -7,7 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul v-if="user" class="navbar-nav mb-2 mb-lg-0">
+                <ul v-if="isLoggedIn" class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link text-capitalize text-center" href="/dashboard">Dashboard</a>
                     </li>
@@ -20,10 +20,10 @@
                 </ul>
                 <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-center" href="/">login</a>
+                        <router-link class="nav-link text-capitalize text-center" to="/">login</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-center" href="/register">register</a>
+                        <router-link class="nav-link text-capitalize text-center" to="/register">register</router-link>
                     </li>
                 </ul>
             </div>
@@ -35,35 +35,21 @@
 import {computed, onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 
-onMounted(() => {
-    getCurrentUser()
-})
-
 const router = useRouter()
 
-const user = ref({})
-
-const getCurrentUser = () => {
-    if (window.auth_user) {
-        user.value = window.auth_user
-    } else {
-        user.value = null
-    }
-}
+const isLoggedIn = computed(() => {
+    return !localStorage.API_TOKEN == undefined
+})
 
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
-            getCurrentUser()
             router.push('/')
 
             toast.fire({
                 icon: "success",
                 title: response.data.message
             })
-        })
-        .catch((error) => {
-
         })
 }
 </script>

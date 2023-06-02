@@ -41,7 +41,7 @@ let form = ref({
 })
 
 const promptMessage = (response) => {
-    window.auth_user = response.data.user
+    localStorage.setItem('API_TOKEN', response.data.api_token)
     router.push('/dashboard')
 
     toast.fire({
