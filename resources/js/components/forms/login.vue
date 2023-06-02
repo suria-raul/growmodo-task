@@ -25,13 +25,15 @@ let form = ref({
     password: '',
 })
 
+const emit = defineEmits(['userLoggedIn'])
+
 const router = useRouter()
 
 const processResponse = (response) => {
     if (response.data.logged_in) {
         localStorage.setItem('API_TOKEN', response.data.api_token)
         router.push('/dashboard')
-
+        emit('userLoggedIn', true)
         toast.fire({
             icon: "success",
             title: response.data.message
