@@ -29,37 +29,31 @@ const router = useRouter()
 
 let errors = ref([])
 
-const login = () => {
+const promptMessage = (response) => {
+    if (response.data.logged_in) {
+        window.auth_user = response.data.user
+        router.push('/dashboard')
+
+        toast.fire({
+            icon: "success",
+            title: response.data.message
+        })
+    } else {
+        Swal.fire({
+            title: response.data.message,
+            icon: 'error',
+            confirmButtonText: 'Yes'
+        })
+    }
+}
+
+const login = async () => {
     const formData = new FormData()
     formData.append('username', form.value.username)
     formData.append('password', form.value.password)
 
-    axios.post("/login", formData)
-        .then((response) => {
-            form.value.username = ''
-            form.value.password = ''
-
-            if (response.data.logged_in) {
-                window.auth_user = response.data.user
-                router.push('/dashboard')
-
-                toast.fire({
-                    icon: "success",
-                    title: response.data.message
-                })
-            } else {
-                Swal.fire({
-                    title: response.data.message,
-                    icon: 'error',
-                    confirmButtonText: 'Yes'
-                })
-            }
-        })
-        .catch((error) => {
-            // not tested
-            errors.value = error
-            console.log(error)
-        })
+    const response = await axios.post("/login", formData)
+    promptMessage(response)
 }
 
 </script>

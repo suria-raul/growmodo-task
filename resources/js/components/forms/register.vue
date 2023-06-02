@@ -40,7 +40,17 @@ let form = ref({
     password_confirmation: '',
 })
 
-const register = () => {
+const promptMessage = (response) => {
+    window.auth_user = response.data.user
+    router.push('/dashboard')
+
+    toast.fire({
+        icon: "success",
+        title: response.data.message
+    })
+}
+
+const register = async () => {
     const formData = new FormData()
     formData.append('username', form.value.username)
     formData.append('email', form.value.email)
@@ -48,26 +58,8 @@ const register = () => {
     formData.append('password', form.value.password)
     formData.append('password_confirmation', form.value.password_confirmation)
 
-    axios.post("/register", formData)
-        .then((response) => {
-            form.value.username = ''
-            form.value.email = ''
-            form.value.phone = ''
-            form.value.password = ''
-            form.value.password_confirmation = ''
-
-            window.auth_user = response.data.user
-
-            router.push('/dashboard')
-
-            toast.fire({
-                icon: "success",
-                title: response.data.message
-            })
-        })
-        .catch((error) => {
-
-        })
+    const response = await axios.post("/register", formData)
+    promptMessage(response)
 }
 
 

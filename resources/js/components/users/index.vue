@@ -69,8 +69,9 @@ const deleteUser = (id) => {
         text: 'This action cannot be undone',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#c72c2c',
+        cancelButtonColor: '#239c3f',
+        cancelButtonText: 'No',
         confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.value) {
