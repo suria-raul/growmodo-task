@@ -18,15 +18,15 @@ const user = ref({
 })
 
 const getCurrentUser = async () => {
-    if (!localStorage.API_TOKEN == undefined) {
+    if (localStorage.API_TOKEN == undefined) {
+        user.value = null
+    } else {
         let response = await axios.get('api/user', {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
             }
         })
         user.value = response.data
-    } else {
-        user.value = null
     }
 }
 </script>
