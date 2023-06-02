@@ -47,7 +47,7 @@ const router = useRouter()
 let users = ref([])
 
 const getUsers = async () => {
-    let response = await axios.get("/api/user")
+    let response = await axios.get("/api/users")
     users.value = response.data.users
 }
 
@@ -75,7 +75,7 @@ const deleteUser = (id) => {
         confirmButtonText: 'Yes'
     }).then((result) => {
         if (result.value) {
-            axios.delete(`/api/user/${id}`)
+            axios.delete(`/api/users/${id}`)
                 .then((res) => {
                     getUsers()
 

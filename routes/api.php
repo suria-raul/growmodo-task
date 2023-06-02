@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/user', \App\Http\Controllers\Api\UserController::class)->except('create');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::resource('/users', \App\Http\Controllers\Api\UserController::class)->except('create');

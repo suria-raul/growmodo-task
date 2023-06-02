@@ -30,13 +30,14 @@ const props = defineProps({
 })
 
 let user = ref({
+    id: '',
     username: '',
     email: '',
     phone: '',
 })
 
 const getUser = async () => {
-    let response = await axios.get(`/api/user/${props.id}`)
+    let response = await axios.get(`/api/users/${props.id}`)
     user.value = response.data
 }
 
