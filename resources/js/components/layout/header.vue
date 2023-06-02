@@ -35,13 +35,20 @@
 
 <script setup>
 import {useRouter} from "vue-router";
+import {computed, ref} from "vue";
 
-defineProps({
+const props = defineProps({
     isLoggedIn: {
         type: Boolean,
         default: false
     }
 })
+
+// const currentUserState = ref(props.isLoggedIn)
+//
+// const isUserLoggedIn = computed(() => {
+//     return currentUserState
+// })
 
 const router = useRouter()
 
@@ -49,6 +56,8 @@ const logout = () => {
     axios.post('/logout')
         .then((response) => {
             localStorage.removeItem('API_TOKEN')
+            // currentUserState.value = false
+
             router.push('/')
 
             toast.fire({
