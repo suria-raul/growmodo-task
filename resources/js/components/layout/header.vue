@@ -35,7 +35,7 @@
 
 <script setup>
 import {useRouter} from "vue-router";
-import {computed, onMounted, ref, watch} from "vue";
+import {onMounted, ref} from "vue";
 
 onMounted(() => {
     showLoggedInNavbar()
@@ -46,7 +46,7 @@ const props = defineProps({
 })
 
 const showNavbarForLoggedInUser = ref()
-const showLoggedInNavbar = () =>  {
+const showLoggedInNavbar = () => {
     if (localStorage.getItem('isLoggedIn')) {
         showNavbarForLoggedInUser.value = true
     }
@@ -58,13 +58,8 @@ const logout = () => {
     axios.post('/logout')
         .then((response) => {
             localStorage.removeItem('API_TOKEN')
-
-            router.push('/')
-
-            toast.fire({
-                icon: "success",
-                title: response.data.message
-            })
+            localStorage.removeItem('isLoggedIn')
+            window.location.href = '/'
         })
 }
 </script>

@@ -26,5 +26,12 @@ class DatabaseSeeder extends Seeder
             'password' => 'p^Nd@S',
         ]);
         $administrator->assignRole($adminRole);
+
+        User::factory(10)->create();
+        $usersWithNoRoles = User::doesntHave('roles')->get();
+        $authenticatedRole = Role::where('name', 'authenticated')->get();
+        foreach ($usersWithNoRoles as $user) {
+            $user->assignRole($authenticatedRole);
+        }
     }
 }

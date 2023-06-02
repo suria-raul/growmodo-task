@@ -1,4 +1,4 @@
-prerequisites:
+Prerequisites:
 1. PHP Version 8.2
 2. Node Js Version 16
 
