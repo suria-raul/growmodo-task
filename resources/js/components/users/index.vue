@@ -52,15 +52,15 @@ const getUsers = async () => {
 }
 
 const createUser = () => {
-    router.push('/user/create')
+    router.push('/users/create')
 }
 
 const editUser = (id) => {
-    router.push(`/user/${id}/edit`)
+    router.push(`/users/${id}/edit`)
 }
 
 const viewUser = (id) => {
-    router.push(`/user/${id}`)
+    router.push(`/users/${id}`)
 }
 
 const deleteUser = (id) => {

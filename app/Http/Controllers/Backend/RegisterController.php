@@ -24,7 +24,7 @@ class RegisterController extends Controller
         return response()->json([
             'message' => 'Registered Successfully!',
             'registered' => true,
-            'user' => Auth::user(),
+            'api_token' => Auth::user()->createToken('API_TOKEN')->plainTextToken,
         ], 200);
     }
 }

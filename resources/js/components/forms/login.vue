@@ -27,9 +27,9 @@ let form = ref({
 
 const router = useRouter()
 
-const promptMessage = (response) => {
+const processResponse = (response) => {
     if (response.data.logged_in) {
-        window.auth_user = response.data.user
+        localStorage.setItem('API_TOKEN', response.data.api_token)
         router.push('/dashboard')
 
         toast.fire({
@@ -51,7 +51,7 @@ const login = async () => {
     formData.append('password', form.value.password)
 
     let response = await axios.post("/login", formData)
-    promptMessage(response)
+    await processResponse(response)
 }
 
 </script>

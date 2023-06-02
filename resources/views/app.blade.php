@@ -17,11 +17,6 @@
     <script type="module" src="{{mix('js/app.js')}}"></script>
 </head>
 <body>
-@if (Auth::check())
-    <script>
-        window.auth_user = {!! Auth::user() !!}
-    </script>
-@endif
 <div id="app"></div>
 </body>
 </html>

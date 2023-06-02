@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-5">
-        <h1 class="text-center text-white">Welcome {{ user.username }} !</h1>
+        <h1 class="text-center text-white">Welcome {{ user.username }}!</h1>
     </div>
 </template>
 
@@ -13,13 +13,16 @@ onMounted(() => {
 
 const user = ref({
     username: '',
+    email: '',
+    phone: '',
 })
 
-const getCurrentUser = () => {
-    if (window.auth_user) {
-        user.value = window.auth_user
-    } else {
-        user.value = null
-    }
+const getCurrentUser = async () => {
+    let response = await axios.get('api/user', {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    })
+    user.value = response.data
 }
 </script>
