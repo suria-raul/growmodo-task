@@ -7,7 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul v-if="isLoggedIn" class="navbar-nav mb-2 mb-lg-0">
+                <ul v-if="isLoggedIn || showNavbarForLoggedInUser" class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/dashboard">
                             Dashboard
@@ -35,20 +35,22 @@
 
 <script setup>
 import {useRouter} from "vue-router";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 
-const props = defineProps({
-    isLoggedIn: {
-        type: Boolean,
-        default: false
-    }
+onMounted(() => {
+    showLoggedInNavbar()
 })
 
-// const currentUserState = ref(props.isLoggedIn)
-//
-// const isUserLoggedIn = computed(() => {
-//     return currentUserState
-// })
+const props = defineProps({
+    isLoggedIn: Boolean
+})
+
+const showNavbarForLoggedInUser = ref()
+const showLoggedInNavbar = () =>  {
+    if (localStorage.getItem('isLoggedIn')) {
+        showNavbarForLoggedInUser.value = true
+    }
+}
 
 const router = useRouter()
 
@@ -56,7 +58,6 @@ const logout = () => {
     axios.post('/logout')
         .then((response) => {
             localStorage.removeItem('API_TOKEN')
-            // currentUserState.value = false
 
             router.push('/')
 

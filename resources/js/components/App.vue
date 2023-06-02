@@ -5,11 +5,12 @@
 
 <script setup>
 import Header from "./layout/header.vue";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 
 const isLoggedIn = ref(false)
 
-const isUserLoggedIn = (value) => {
+const isUserLoggedIn = async (value) => {
+    localStorage.setItem('isLoggedIn', value)
     isLoggedIn.value = value
 }
 </script>
