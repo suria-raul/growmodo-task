@@ -37,7 +37,11 @@ let user = ref({
 })
 
 const getUser = async () => {
-    let response = await axios.get(`/api/users/${props.id}`)
+    let response = await axios.get(`/api/users/${props.id}`, {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    })
     user.value = response.data
 }
 

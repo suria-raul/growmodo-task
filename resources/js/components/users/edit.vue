@@ -43,7 +43,11 @@ let form = ref({
 const router = useRouter()
 
 const getUser = async () => {
-    let response = await axios.get(`/api/users/${props.id}/edit`)
+    let response = await axios.get(`/api/users/${props.id}/edit`, {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    })
     form.value = response.data
 }
 

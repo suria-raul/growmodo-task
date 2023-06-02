@@ -42,7 +42,7 @@ let form = ref({
 })
 
 const promptMessage = (response) => {
-    router.push('/user')
+    router.push('/users')
 
     toast.fire({
         icon: "success",
@@ -58,7 +58,11 @@ const saveUser = async () => {
     formData.append('password', form.value.password)
     formData.append('password_confirmation', form.value.password_confirmation)
 
-    let response = await axios.post("/api/users", formData)
+    let response = await axios.post("/api/users", formData, {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    })
     promptMessage(response)
 }
 
