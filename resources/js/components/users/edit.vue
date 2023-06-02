@@ -42,41 +42,30 @@ let form = ref({
 
 const router = useRouter()
 
-let errors = ref([])
-
 const getUser = async () => {
     let response = await axios.get(`/api/user/${props.id}/edit`)
     form.value = response.data
 }
 
-const updateUser = (id) => {
+const promptMessage = (response) => {
+    router.push('/user')
+    getUser()
+
+    toast.fire({
+        icon: "success",
+        title: response.data.message
+    })
+}
+
+const updateUser = async (id) => {
     const formData = new FormData()
     formData.append('username', form.value.username)
     formData.append('email', form.value.email)
     formData.append('phone', form.value.phone)
     formData.append('_method', 'PUT')
 
-    axios.post(`/api/user/${id}`, formData)
-        .then((response) => {
-            form.value.username = ''
-            form.value.email = ''
-            form.value.phone = ''
-            form.value.password = ''
-            form.value.password_confirmation = ''
-
-            router.push('/user')
-            getUser()
-
-            toast.fire({
-                icon: "success",
-                title: response.data.message
-            })
-        })
-        .catch((error) => {
-            // not tested
-            errors.value = error
-            console.log(error)
-        })
+    let response = await axios.post(`/api/user/${id}`, formData)
+    promptMessage(response)
 }
 
 </script>

@@ -27,8 +27,6 @@ let form = ref({
 
 const router = useRouter()
 
-let errors = ref([])
-
 const promptMessage = (response) => {
     if (response.data.logged_in) {
         window.auth_user = response.data.user
@@ -52,7 +50,7 @@ const login = async () => {
     formData.append('username', form.value.username)
     formData.append('password', form.value.password)
 
-    const response = await axios.post("/login", formData)
+    let response = await axios.post("/login", formData)
     promptMessage(response)
 }
 

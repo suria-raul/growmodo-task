@@ -84,9 +84,6 @@ const deleteUser = (id) => {
                         title: res.data.message
                     })
                 })
-                .catch((error) => {
-                    console.log(error)
-                })
         }
     })
 }

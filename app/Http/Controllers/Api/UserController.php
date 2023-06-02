@@ -24,7 +24,10 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        User::create($request->validated());
+        $user = User::create($request->validated());
+//        by default any user created by the admin
+//        will have the authenticated role
+        $user->assignRole('authenticated');
 
         return response()->json([
             'message' => 'User Created Successfully!',

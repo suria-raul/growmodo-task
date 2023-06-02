@@ -41,9 +41,16 @@ let form = ref({
     password_confirmation: '',
 })
 
-let errors = ref([])
+const promptMessage = (response) => {
+    router.push('/user')
 
-const saveUser = () => {
+    toast.fire({
+        icon: "success",
+        title: response.data.message
+    })
+}
+
+const saveUser = async () => {
     const formData = new FormData()
     formData.append('username', form.value.username)
     formData.append('email', form.value.email)
@@ -51,26 +58,8 @@ const saveUser = () => {
     formData.append('password', form.value.password)
     formData.append('password_confirmation', form.value.password_confirmation)
 
-    axios.post("/api/user", formData)
-        .then((response) => {
-            form.value.username = ''
-            form.value.email = ''
-            form.value.phone = ''
-            form.value.password = ''
-            form.value.password_confirmation = ''
-
-            router.push('/user')
-
-            toast.fire({
-                icon: "success",
-                title: response.data.message
-            })
-        })
-        .catch((error) => {
-            // not tested
-            errors.value = error
-            console.log(error)
-        })
+    let response = await axios.post("/api/user", formData)
+    promptMessage(response)
 }
 
 </script>

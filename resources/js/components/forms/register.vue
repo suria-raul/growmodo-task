@@ -58,7 +58,7 @@ const register = async () => {
     formData.append('password', form.value.password)
     formData.append('password_confirmation', form.value.password_confirmation)
 
-    const response = await axios.post("/register", formData)
+    let response = await axios.post("/register", formData)
     promptMessage(response)
 }
 
