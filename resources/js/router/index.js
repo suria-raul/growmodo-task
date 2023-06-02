@@ -21,20 +21,20 @@ const routes = [
         component: dashboard
     },
     {
-        path: '/user',
+        path: '/users',
         component: users
     },
     {
-        path: '/user/create',
+        path: '/users/create',
         component: createUser
     },
     {
-        path: '/user/:id',
+        path: '/users/:id',
         component: showUser,
         props: true
     },
     {
-        path: '/user/:id/edit',
+        path: '/users/:id/edit',
         component: editUser,
         props: true
     }

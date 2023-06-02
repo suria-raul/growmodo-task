@@ -7,18 +7,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul v-if="isLoggedIn" class="navbar-nav mb-2 mb-lg-0">
+                <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-center" href="/dashboard">Dashboard</a>
+                        <router-link class="nav-link text-capitalize text-center" to="/dashboard">Dashboard</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-capitalize text-center" href="/user">View Records</a>
+                        <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
                     </li>
-                </ul>
-                <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/">login</router-link>
                     </li>
@@ -44,6 +42,7 @@ const isLoggedIn = computed(() => {
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
+            localStorage.removeItem('API_TOKEN')
             router.push('/')
 
             toast.fire({
