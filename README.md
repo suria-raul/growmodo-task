@@ -8,6 +8,9 @@
 3. `php artisan key:generate`
 4. `php artisan migrate --seed`
 
+#### Setup sh file
+If you are using linux or wsl, run `./setup.sh` from the applications root directory  to setup the application
+
 ### Admin User
 Default Administrator:  
 username: administrator  
