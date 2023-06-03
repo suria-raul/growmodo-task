@@ -23,3 +23,5 @@ Route::post('/register', [\App\Http\Controllers\Backend\RegisterController::clas
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'role:administrator|authenticated']);
 
 Route::resource('/users', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware(['auth', 'role:administrator']);
+
+Route::post('/unsubscribe/{user}', [\App\Http\Controllers\Backend\UserController::class, 'unsubscribe'])->name('unsubscribe.user')->middleware(['auth', 'role:administrator|authenticated']);

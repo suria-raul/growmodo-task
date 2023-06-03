@@ -1,5 +1,5 @@
 <template>
-    <Header :is-logged-in="isLoggedIn" :user="user"/>
+    <Header :is-logged-in="isLoggedIn"/>
     <router-view @userLoggedIn="isUserLoggedIn" />
 </template>
 

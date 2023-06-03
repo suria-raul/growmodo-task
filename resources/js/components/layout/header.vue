@@ -15,7 +15,7 @@
                         <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link text-capitalize text-center">Unsubscribe</button>
+                        <button class="nav-link text-capitalize text-center" @click="unsubscribe">Unsubscribe</button>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
@@ -42,9 +42,8 @@ onMounted(() => {
     showLoggedInNavbar()
 })
 
-const props = defineProps({
+defineProps({
     isLoggedIn: Boolean,
-    user: Object
 })
 
 const showNavbarForLoggedInUser = ref()
@@ -55,7 +54,7 @@ const showLoggedInNavbar = () => {
 }
 
 const router = useRouter()
-
+const currentUser = ref()
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
@@ -63,5 +62,23 @@ const logout = () => {
             localStorage.removeItem('isLoggedIn')
             window.location.href = '/'
         })
+}
+
+const unsubscribe = async () => {
+    let defaultHeader = {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    }
+
+    let res = await axios.get("/api/user", defaultHeader)
+    currentUser.value = res.data
+
+    let unsubResponse = await axios.post(`/unsubscribe/${currentUser.value.id}`, defaultHeader)
+
+    toast.fire({
+        icon: "success",
+        title: unsubResponse.data.message
+    })
 }
 </script>
