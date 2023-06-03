@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,6 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'ind
 Route::resource('/users', \App\Http\Controllers\Backend\UserController::class)->except('destroy', 'update')->middleware(['auth', 'role:administrator']);
 
 Route::post('/unsubscribe/{user}', [\App\Http\Controllers\Backend\UserController::class, 'unsubscribe'])->name('unsubscribe.user')->middleware(['auth', 'role:administrator|authenticated']);
+Route::get('/get-role/{user}', function (User $user) {
+    return $user->getRoleNames()->first();
+})->name('user.get.role')->middleware(['auth', 'role:administrator|authenticated']);
