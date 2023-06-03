@@ -8,11 +8,9 @@ import Header from "./layout/header.vue";
 import {ref} from "vue";
 
 const isLoggedIn = ref(false)
-const user = ref({})
 
-const isUserLoggedIn = async (userObject) => {
-    localStorage.setItem('isLoggedIn', userObject.loggedIn)
-    isLoggedIn.value = userObject.loggedIn
-    user.value = userObject
+const isUserLoggedIn = async (loggedIn) => {
+    localStorage.setItem('isLoggedIn', loggedIn)
+    isLoggedIn.value = loggedIn
 }
 </script>
