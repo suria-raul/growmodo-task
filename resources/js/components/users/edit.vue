@@ -52,7 +52,7 @@ const getUser = async () => {
 }
 
 const promptMessage = (response) => {
-    router.push('/user')
+    router.push('/users')
     getUser()
 
     toast.fire({
@@ -68,7 +68,11 @@ const updateUser = async (id) => {
     formData.append('phone', form.value.phone)
     formData.append('_method', 'PUT')
 
-    let response = await axios.post(`/api/user/${id}`, formData)
+    let response = await axios.post(`/api/users/${id}`, formData, {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+        }
+    })
     promptMessage(response)
 }
 

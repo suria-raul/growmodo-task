@@ -49,15 +49,16 @@ defineProps({
 })
 
 const showNavbarForLoggedInUser = ref()
+const router = useRouter()
+const currentUser = ref()
+const showViewRecordsLinkForAdmin = ref()
+
 const showLoggedInNavbar = () => {
     if (localStorage.getItem('isLoggedIn')) {
         showNavbarForLoggedInUser.value = true
     }
 }
 
-const router = useRouter()
-const currentUser = ref()
-const showViewRecordsLinkForAdmin = ref()
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
