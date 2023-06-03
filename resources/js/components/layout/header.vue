@@ -1,6 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container d-flex justify-content-end">
+            <router-link class="navbar-brand" to="/dashboard">
+                Home
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navigation" aria-controls="navigation"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -8,11 +11,6 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul v-if="isLoggedIn || showNavbarForLoggedInUser" class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <router-link class="nav-link text-capitalize text-center" to="/dashboard">
-                            Dashboard
-                        </router-link>
-                    </li>
                     <li class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
