@@ -1,5 +1,5 @@
 <template>
-    <Header :is-logged-in="isLoggedIn"/>
+    <Header :is-logged-in="isLoggedIn" :user="user"/>
     <router-view @userLoggedIn="isUserLoggedIn" />
 </template>
 
@@ -8,9 +8,11 @@ import Header from "./layout/header.vue";
 import {ref} from "vue";
 
 const isLoggedIn = ref(false)
+const user = ref({})
 
-const isUserLoggedIn = async (value) => {
-    localStorage.setItem('isLoggedIn', value)
-    isLoggedIn.value = value
+const isUserLoggedIn = async (userObject) => {
+    localStorage.setItem('isLoggedIn', userObject.loggedIn)
+    isLoggedIn.value = userObject.loggedIn
+    user.value = userObject
 }
 </script>

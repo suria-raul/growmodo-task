@@ -15,6 +15,9 @@
                         <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
                     <li class="nav-item">
+                        <button class="nav-link text-capitalize text-center">Unsubscribe</button>
+                    </li>
+                    <li class="nav-item">
                         <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
                     </li>
                 </ul>
@@ -33,14 +36,15 @@
 
 <script setup>
 import {useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 onMounted(() => {
     showLoggedInNavbar()
 })
 
 const props = defineProps({
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    user: Object
 })
 
 const showNavbarForLoggedInUser = ref()

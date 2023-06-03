@@ -32,8 +32,18 @@ const router = useRouter()
 const processResponse = (response) => {
     if (response.data.logged_in) {
         localStorage.setItem('API_TOKEN', response.data.api_token)
+
+        let user = axios.get("/api/user", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
+            }
+        })
+
         router.push('/dashboard')
-        emit('userLoggedIn', true)
+        emit('userLoggedIn', {
+            loggedIn: true,
+            user: user.data
+        })
         toast.fire({
             icon: "success",
             title: response.data.message
