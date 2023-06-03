@@ -40,9 +40,12 @@ let form = ref({
     password_confirmation: '',
 })
 
+const emit = defineEmits(['userLoggedIn'])
+
 const promptMessage = (response) => {
     localStorage.setItem('API_TOKEN', response.data.api_token)
     router.push('/dashboard')
+    emit('userLoggedIn', true)
 
     toast.fire({
         icon: "success",

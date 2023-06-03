@@ -30,7 +30,7 @@ const getRole = async () => {
 
     let role = await axios.get(`/get-role/${currentUser.value.id}`, defaultHeader)
     currentUserRole.value = role.data
-    // console.log(currentUserRole.value)
+    console.log(currentUserRole.value)
     isAdmin.value = currentUserRole.value == 'administrator'
     localStorage.setItem('isAdmin', isAdmin.value)
 }

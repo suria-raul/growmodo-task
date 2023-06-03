@@ -11,7 +11,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul v-if="isLoggedIn || showNavbarForLoggedInUser" class="navbar-nav mb-2 mb-lg-0">
-                    <li v-if="isAdmin || isCurrentAdmin" class="nav-item">
+                    <li v-if="isAdmin || showViewRecordsLinkForAdmin" class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
                     <li v-else class="nav-item">
@@ -40,6 +40,7 @@ import {computed, onMounted, ref} from "vue";
 
 onMounted(() => {
     showLoggedInNavbar()
+    showViewRecordsLink()
 })
 
 defineProps({
@@ -56,6 +57,7 @@ const showLoggedInNavbar = () => {
 
 const router = useRouter()
 const currentUser = ref()
+const showViewRecordsLinkForAdmin = ref()
 const logout = () => {
     axios.post('/logout')
         .then((response) => {
@@ -84,9 +86,7 @@ const unsubscribe = async () => {
     })
 }
 
-const isCurrentAdmin = () => {
-    if (localStorage.getItem('isAdmin')) {
-        return true;
-    }
+const showViewRecordsLink = () => {
+    showViewRecordsLinkForAdmin.value = localStorage.getItem('isAdmin') == 'true';
 }
 </script>
