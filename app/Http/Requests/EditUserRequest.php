@@ -11,7 +11,7 @@ class EditUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->hasRole('administrator');
+        return auth()->user()->hasPermissionTo('administer users');
     }
 
     /**

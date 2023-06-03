@@ -69,11 +69,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if (auth()->user()->hasPermissionTo('administer users')) {
+            $user->delete();
 
-        return response()->json([
-            'message' => 'User Deleted Successfully!',
-            'model_deleted' => true
-        ], 200);
+            return response()->json([
+                'message' => 'User Deleted Successfully!',
+                'model_deleted' => true
+            ], 200);
+        }
     }
 }

@@ -42,12 +42,14 @@ class UserController extends Controller
 
     public function unsubscribe(User $user)
     {
-        $user->is_subscribed = 0;
-        $user->save();
+        if (auth()->user()->hasPermissionTo('administer own account')) {
+            $user->is_subscribed = 0;
+            $user->save();
 
-        return response()->json([
-            'unsubscribe' => true,
-            'message' => 'Unsubscribed successfully'
-        ]);
+            return response()->json([
+                'unsubscribe' => true,
+                'message' => 'Unsubscribed successfully'
+            ]);
+        }
     }
 }
