@@ -20,7 +20,7 @@
                     <li class="nav-item">
                         <button class="nav-link text-capitalize text-center mx-auto" @click="logout">Logout</button>
                     </li>
-                </ul>g
+                </ul>
                 <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/">login</router-link>
