@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application as AppFoundation;
 
 class LoginController extends Controller
 {
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request): JsonResponse
     {
         $credentials = $request->getCredentials();
 
@@ -29,12 +34,12 @@ class LoginController extends Controller
         ]);
     }
 
-    public function showForm()
+    public function showForm(): View|Application|Factory|AppFoundation
     {
         return view('app');
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         Auth::logout();
 

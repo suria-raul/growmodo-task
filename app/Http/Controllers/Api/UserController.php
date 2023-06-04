@@ -8,13 +8,14 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): UserCollection
     {
         return new UserCollection(User::role('authenticated')->get());
     }
@@ -22,7 +23,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): JsonResponse
     {
         $user = User::create($request->validated());
 //        by default any user created by the admin
@@ -38,7 +39,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user): UserResource
     {
         return new UserResource($user);
     }
@@ -46,7 +47,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $user): UserResource
     {
         return new UserResource($user);
     }
@@ -54,7 +55,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditUserRequest $request, User $user)
+    public function update(EditUserRequest $request, User $user): JsonResponse
     {
         $user->update($request->validated());
 
