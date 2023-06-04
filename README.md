@@ -15,7 +15,6 @@ Make the file executable by running `chmod u+x setup.sh` from the root directory
 Then `./setup.sh` in your command line.
 
 ### Admin User
-Default Administrator:  
 username: administrator  
 password: p^Nd@S
 
