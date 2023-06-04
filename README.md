@@ -1,6 +1,7 @@
 ### Prerequisites:
 1. PHP Version 8.2
-2. Node Js Version 16
+2. Node Js Version 18.14.2
+3. npm version 9.5
 
 ### Setup (run the following commands):
 1. Copy `.env.example` to `.env` and provide your database credentials
