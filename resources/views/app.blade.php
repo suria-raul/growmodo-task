@@ -13,8 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
             integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{mix('css/app.css')}}">
-    <script type="module" src="{{mix('js/app.js')}}"></script>
+    @vite(['resources/js/app.js'])
 </head>
 <body>
 <div id="app"></div>
