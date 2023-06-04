@@ -3,13 +3,16 @@
 2. Node Js Version 16
 
 ### Setup (run the following commands):
-1. `npm install`
-2. `composer install`
-3. `php artisan key:generate`
-4. `php artisan migrate --seed`
+1. Copy `.env.example` to `.env` and provide your database credentials
+2. `npm install`
+3. `composer install`
+4. `php artisan key:generate`
+5. `php artisan migrate --seed`
 
-#### Setup sh file
-If you are using linux or wsl, run `./setup.sh` from the applications root directory  to setup the application
+#### Setup sh file (for linux or wsl)
+After setting up your `.env` file you can use the `.setup.sh` file to setup the application.  
+Make the file executable by running `chmod u+x setup.sh` from the root directory.  
+Then `./setup.sh` in your command line.
 
 ### Admin User
 Default Administrator:  
