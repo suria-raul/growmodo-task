@@ -43,11 +43,7 @@ let form = ref({
 const router = useRouter()
 
 const getUser = async () => {
-    let response = await axios.get(`/api/users/${props.id}/edit`, {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
-        }
-    })
+    let response = await axios.get(`/api/users/${props.id}/edit`)
     form.value = response.data
 }
 
@@ -68,11 +64,7 @@ const updateUser = async (id) => {
     formData.append('phone', form.value.phone)
     formData.append('_method', 'PUT')
 
-    let response = await axios.post(`/api/users/${id}`, formData, {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
-        }
-    })
+    let response = await axios.post(`/api/users/${id}`, formData)
     promptMessage(response)
 }
 

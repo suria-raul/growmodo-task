@@ -15,12 +15,12 @@
                         <router-link class="nav-link text-capitalize text-center" to="/users">View Records</router-link>
                     </li>
                     <li v-else class="nav-item">
-                        <button class="nav-link text-capitalize text-center" @click="unsubscribe">Unsubscribe</button>
+                        <button class="nav-link text-capitalize text-center mx-auto" @click="unsubscribe">Unsubscribe</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link text-capitalize text-center" @click="logout">Logout</button>
+                        <button class="nav-link text-capitalize text-center mx-auto" @click="logout">Logout</button>
                     </li>
-                </ul>
+                </ul>g
                 <ul v-else class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <router-link class="nav-link text-capitalize text-center" to="/">login</router-link>
@@ -70,16 +70,10 @@ const logout = () => {
 }
 
 const unsubscribe = async () => {
-    let defaultHeader = {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
-        }
-    }
-
-    let res = await axios.get("/api/user", defaultHeader)
+    let res = await axios.get("/api/user")
     currentUser.value = res.data
 
-    let unsubResponse = await axios.post(`/unsubscribe/${currentUser.value.id}`, defaultHeader)
+    let unsubResponse = await axios.post(`/unsubscribe/${currentUser.value.id}`)
 
     toast.fire({
         icon: "success",

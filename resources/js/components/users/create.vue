@@ -58,11 +58,7 @@ const saveUser = async () => {
     formData.append('password', form.value.password)
     formData.append('password_confirmation', form.value.password_confirmation)
 
-    let response = await axios.post("/api/users", formData, {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('API_TOKEN')
-        }
-    })
+    let response = await axios.post("/api/users", formData)
     promptMessage(response)
 }
 
