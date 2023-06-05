@@ -17,6 +17,8 @@ class UserController extends Controller
      */
     public function index(): UserCollection
     {
+        $this->authorize('viewAny', User::class);
+
         return new UserCollection(User::role('authenticated')->get());
     }
 
@@ -25,6 +27,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): JsonResponse
     {
+        $this->authorize('create', User::class);
+
         $user = User::create($request->validated());
 //        by default any user created by the admin
 //        will have the authenticated role
@@ -41,6 +45,8 @@ class UserController extends Controller
      */
     public function show(User $user): UserResource
     {
+        $this->authorize('view', $user);
+
         return new UserResource($user);
     }
 
@@ -49,6 +55,8 @@ class UserController extends Controller
      */
     public function edit(User $user): UserResource
     {
+        $this->authorize('update', $user);
+
         return new UserResource($user);
     }
 
@@ -57,6 +65,8 @@ class UserController extends Controller
      */
     public function update(EditUserRequest $request, User $user): JsonResponse
     {
+        $this->authorize('update', $user);
+
         $user->update($request->validated());
 
         return response()->json([
@@ -70,13 +80,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (auth()->user()->hasPermissionTo('administer users')) {
-            $user->delete();
+        $this->authorize('delete', $user);
+        
+        $user->delete();
 
-            return response()->json([
-                'message' => 'User Deleted Successfully!',
-                'model_deleted' => true
-            ], 200);
-        }
+        return response()->json([
+            'message' => 'User Deleted Successfully!',
+            'model_deleted' => true
+        ], 200);
     }
 }
